@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+body{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+/* filter btn */
+.btn-hover{
+  @apply cursor-pointer  hover:bg-white hover:text-black hover:rounded-full hover:shadow transition-all ease-in-out duration-250;
+}
+.btn-active{
+  @apply  bg-white text-black rounded-full shadow;
+}
+
+/* hide scrollbar */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* toggle bar */
+.bar-1{
+  @apply my-[-3.2px] rotate-45 transition-all ease-in-out duration-100;
+}
+.bar-2{
+  @apply hidden transition-all ease-in-out duration-100;
+}
+
+.bar-3{
+  @apply my-[-3.2px] -rotate-45 transition-all ease-in-out duration-100;
+}
+
+/* side bar animation */
+.slide-bar{
+  animation: slide-in 100ms linear forwards;
+}
+
+@keyframes slide-in{
+  from{width: 0%;}
+  to{width: 180%;}
+}
