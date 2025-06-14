@@ -29,7 +29,7 @@ function App() {
 
   useEffect(() => {
     window.addEventListener("resize", watchInnerWidth)
-    return () => { return window.removeEventListener("scroll", watchInnerWidth) }
+    return () => { return window.removeEventListener("resize", watchInnerWidth) }
   }, [])
 
   
