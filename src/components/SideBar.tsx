@@ -48,14 +48,14 @@ function SideBar() {
 
 
     return (
-        <div className="absolute flex w-[100%] h-[100vh] top-14 left-0 z-20">
-            <div className="bg-black sm:hidden flex flex-col items-center h-full slide-bar shadow-2xl">
+        <div className="absolute flex w-[100%] h-[100vh] top-15 left-0 z-20 font-card">
+            <div className="bg-black/70 sm:hidden flex flex-col items-center h-full slide-bar shadow-2xl">
                 {currentPath === "/favourites" ?
-                    <Link to="/" className="my-5 mt-5 bg-black text-white text-[18px] text-center  w-[80%] rounded-full p-2 hover:invert border-2 transition-all ease-in-out duration-250" onClick={()=> setIsSideBarPresent(!isSideBarPresent) }>
+                    <Link to="/" className="my-5 mt-5 bg-white/90 text-black/70 font-semibold text-[18px] text-center  w-[80%] rounded-full p-2 hover:bg-[#fffd8e] border-2 transition-all ease-in-out duration-250" onClick={() => setIsSideBarPresent(!isSideBarPresent)}>
                         Home
                     </Link>
                     :
-                    <Link to="/favourites" className="my-5 bg-black text-white text-[18px] text-center  w-[80%] rounded-full p-2 hover:invert border-2 transition-all ease-in-out duration-250" onClick={()=> setIsSideBarPresent(!isSideBarPresent) }>
+                    <Link to="/favourites" className="my-5 bg-white/90 text-black/70 font-semibold text-[18px] text-center  w-[80%] rounded-full p-2 hover:bg-[#fffd8e] border-2 transition-all ease-in-out duration-250" onClick={() => setIsSideBarPresent(!isSideBarPresent)}>
                         Favourites
                     </Link>
                 }
@@ -69,7 +69,7 @@ function SideBar() {
                     }} />
                 </div>
                 {currentPath === "/" &&
-                    <div className="bg-black text-white text-[16px] w-[80%] lg:text-lg flex flex-col gap-4 shadow-lg px-4">
+                    <div className=" text-white text-[16px] w-[80%] lg:text-lg flex flex-col gap-4 px-4 font-semibold">
                         <button className="random px-4 p-1 btn-hover" onClick={handleFilter} value="random">All</button>
                         <button className="general px-4 p-1 btn-hover" onClick={handleFilter} value="general">General</button>
                         <button className="knock-knock px-4 p-1 btn-hover" onClick={handleFilter} value="knock-knock">Knock-Knock</button>

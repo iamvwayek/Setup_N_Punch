@@ -1,5 +1,7 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { motion, useScroll } from "motion/react";
+import { ToastContainer } from 'react-toastify';
 
 import Home from "./screens/Home";
 import Favourites from "./screens/Favourites";
@@ -20,6 +22,7 @@ function App() {
   const { isScaled } = useContext(ScaleContext);
   const { activeType } = useContext(TypeContext);
 
+  const [showBar, setShowBar] = useState(false)
 
   function watchInnerWidth() {
     if (window.innerWidth > 639) {
@@ -32,7 +35,20 @@ function App() {
     return () => { return window.removeEventListener("resize", watchInnerWidth) }
   }, [])
 
-  
+  // scroll TOP-bar
+
+  function watchScrollTop() {
+    if (document.documentElement.scrollTop > 0) {
+      setShowBar(true)
+    };
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", watchScrollTop)
+    return () => { return window.removeEventListener("scroll", watchScrollTop) }
+  }, [])
+
+
 
   useEffect(() => {
     const btn = document.querySelectorAll(".bar");
@@ -71,13 +87,17 @@ function App() {
     }
   }, [isScaled])
 
-
+  // framer-motion
+  const { scrollYProgress } = useScroll();
 
   return (
-    <div className="w-full h-[100vh] flex flex-col">
-      {isScaled && <ScaleCard topVal={document.documentElement.scrollTop} />}
-      <SearchProvider>
-        <FavProvider>
+    <>
+      <div className="w-full h-[100vh] flex flex-col">
+        {showBar && <motion.div style={{ scaleX: scrollYProgress }} className="h-1.5 w-full bg-black fixed top-0 left-0 origin-left z-20"></motion.div>}
+        <ToastContainer theme="dark" position="bottom-left" autoClose={2000} />
+        {isScaled && <ScaleCard topVal={document.documentElement.scrollTop} />}
+        <SearchProvider>
+          <FavProvider>
             <Router>
               <Navbar />
               {isSideBarPresent && <SideBar />}
@@ -88,9 +108,10 @@ function App() {
               <TopBtn />
               <Footer />
             </Router>
-        </FavProvider>
-      </SearchProvider>
-    </div>
+          </FavProvider>
+        </SearchProvider>
+      </div>
+    </>
   )
 }
 

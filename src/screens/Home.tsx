@@ -59,15 +59,14 @@ function Home() {
   // error msg
 
   if (error.length) {
-    return <div className=" w-full h-[100vh] font-bold col-2 lg:text-4xl text-2xl pl-5  flex justify-center items-center">{error}</div>
+    return <div className=" w-full h-[100vh] font-card font-bold col-2 lg:text-4xl text-2xl pl-5  flex justify-center items-center">{error}</div>
   }
 
   // loading logic
 
   if (!isLoading) {
     return <div className=" w-full h-[100vh] flex justify-center items-center ">
-      <img src="/loading spinner.gif" alt="loader" className="lg:w-25 w-18" />
-
+      <img src="/spinner.gif" alt="loader" className="lg:w-26 w-21" />
     </div>
   }
 
